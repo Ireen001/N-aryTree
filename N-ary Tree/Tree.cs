@@ -44,22 +44,22 @@ namespace N_ary_Tree
             }
             return newNode;
         }
-     public void removeNode(TreeNode<T> node)
+
+        public void removeNode(TreeNode<T> node)
         {
             this.TheTree.Remove(node); // node uit tree halen
             Count--;
             var parentNode = node.Parent; // uit node zijn parent halen
             parentNode.Child.Remove(node); // haal node uit de parent
 
-            if(node.Child.Count == 0)
-            { }
-            else
+            if(node.Child.Count != 0)
             {
-                for (int i = node.Child.Count-1; i>=0; i--)
+                for (int i = node.Child.Count - 1; i >= 0; i--)
                 {
                     removeNode(node.Child[i]);
                 }
             }
+
             LeafCount = 0;
             foreach (TreeNode<T> leaf in TheTree)
             {
@@ -78,26 +78,35 @@ namespace N_ary_Tree
                 traversednodes.Add(node.Value);
             }
             return traversednodes;
-
         }
 
         public List<T> SumToLeafs()
         {
+
             List<T> AllSom = new List<T>();
             List<TreeNode<T>> AllLeafs = new List<TreeNode<T>>();
-
-            foreach(TreeNode<T> leaf in AllLeafs)
+            foreach (TreeNode<T> leaf in TheTree)
             {
-                
-                TreeNode<T> Parent = leaf;
+                if (leaf.Child.Count == 0)
+                {
+                    AllLeafs.Add(leaf);
+                }
+            }
+            foreach (TreeNode<T> leafs in AllLeafs)
+            {
+                int n;
+
+                TreeNode<T> Parent = leafs;
                 dynamic Som = 0;
                 Som = Som + Parent.Value;
-                while(Parent.Parent != null)
+                while (Parent.Parent != null)
                 {
                     Som = Som + Parent.Parent.Value;
                     Parent = Parent.Parent;
                 }
                 AllSom.Add(Som);
+
+
             }
             return AllSom;
         }

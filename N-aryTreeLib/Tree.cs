@@ -9,7 +9,6 @@ namespace N_ary_Tree
     public class Tree<T>
     {
         public int Count { get; set; }
-
         public int LeafCount { get; set;}
 
         public List<TreeNode<T>> TheTree = new List<TreeNode<T>>();
@@ -20,11 +19,13 @@ namespace N_ary_Tree
             LeafCount = 0;
         }
 
+        //Add child to the tree
         public TreeNode<T> AddChildNode(TreeNode<T> parentNode, T Value)
         {
             Count++;
             TreeNode<T> newNode = new TreeNode<T>(Value, parentNode);
-            if (parentNode != null)
+            //Check if node has a parent, add node to the tree
+            if (parentNode != null) 
             {
                 TheTree.Add(newNode);
                 parentNode.Child.Add(newNode);
@@ -45,13 +46,15 @@ namespace N_ary_Tree
             return newNode;
         }
 
+        //Remove node from tree
         public void removeNode(TreeNode<T> node)
         {
-            this.TheTree.Remove(node); // node uit tree halen
+            TheTree.Remove(node); // Remove node from the tree
             Count--;
-            var parentNode = node.Parent; // uit node zijn parent halen
-            parentNode.Child.Remove(node); // haal node uit de parent
+            var parentNode = node.Parent; // Checking who the parent is from the node
+            parentNode.Child.Remove(node); // Remove child from parentnode 
 
+            //Remove all children from that node
             if(node.Child.Count != 0)
             {
                 for (int i = node.Child.Count - 1; i >= 0; i--)
@@ -60,6 +63,7 @@ namespace N_ary_Tree
                 }
             }
 
+            //Count how many leafs without children
             LeafCount = 0;
             foreach (TreeNode<T> leaf in TheTree)
             {
@@ -69,6 +73,8 @@ namespace N_ary_Tree
                 }
             }
         }
+
+        //Add nodes to list
         public List<T> TraverseNodes()
         {
             List<T> traversednodes = new List<T>();
@@ -80,6 +86,7 @@ namespace N_ary_Tree
             return traversednodes;
         }
 
+        //Return the sum of the leafs
         public List<T> SumToLeafs()
         {
 
@@ -89,12 +96,14 @@ namespace N_ary_Tree
             {
                 if (leaf.Child.Count == 0)
                 {
+                    //Add all leafs to list
                     AllLeafs.Add(leaf);
                 }
             }
+
+           //Sum all leafs
             foreach (TreeNode<T> leafs in AllLeafs)
             {
-                int n;
 
                 TreeNode<T> Parent = leafs;
                 dynamic Som = 0;

@@ -10,36 +10,44 @@ namespace N_ary_Tree
     {
         static void Main(string[] args)
         {
-            var NAryTree = new Tree<int>();
-            var root = NAryTree.AddChildNode(null, 1);
+            var tree = new Tree<int>();
+            
+            // Rootnode
+            var root = tree.AddChildNode(null, 1);
 
-            var child1 = NAryTree.AddChildNode(root, 2);
-            var child2 = NAryTree.AddChildNode(root, 3);
-            //var child3 = NAryTree.AddChildNode(root, 4);
-            //var child4 = NAryTree.AddChildNode(root, 5);
-            //var child5 = NAryTree.AddChildNode(child1, 6);
-            //var child6 = NAryTree.AddChildNode(child1, 7);
-            //var child7 = NAryTree.AddChildNode(child2, 8);
-            //var child8 = NAryTree.AddChildNode(child2, 9);
-            //var child9 = NAryTree.AddChildNode(child2, 10);
-            //var child10 = NAryTree.AddChildNode(child4, 11);
-            //var child11 = NAryTree.AddChildNode(child4, 12);
-            //var child12 = NAryTree.AddChildNode(child4, 13);
-            //var child13 = NAryTree.AddChildNode(child6, 14);
-            //var child14 = NAryTree.AddChildNode(child9, 15);
-            //var child15 = NAryTree.AddChildNode(child9, 16);
-            //var child16 = NAryTree.AddChildNode(child12, 17);
-            //var child17 = NAryTree.AddChildNode(child12, 18);
-            //var child18 = NAryTree.AddChildNode(child12, 19);
+            //Add children to the tree
+            var child1 = tree.AddChildNode(root, 2);
+            var child2 = tree.AddChildNode(root, 3);
+            var child3 = tree.AddChildNode(root, 4);
+            var child4 = tree.AddChildNode(root, 5);
+            var child5 = tree.AddChildNode(child1, 6);
+            var child6 = tree.AddChildNode(child1, 7);
+            var child7 = tree.AddChildNode(child2, 8);
+            var child8 = tree.AddChildNode(child2, 9);
+            var child9 = tree.AddChildNode(child2, 10);
+            var child10 = tree.AddChildNode(child4, 11);
+            var child11 = tree.AddChildNode(child4, 12);
+            var child12 = tree.AddChildNode(child4, 13);
+            var child13 = tree.AddChildNode(child6, 14);
+            var child14 = tree.AddChildNode(child9, 15);
+            var child15 = tree.AddChildNode(child9, 16);
+            var child16 = tree.AddChildNode(child12, 17);
+            var child17 = tree.AddChildNode(child12, 18);
+            var child18 = tree.AddChildNode(child12, 19);
 
-            //NAryTree.removeNode(child4);
-            //NAryTree.TraverseNodes();
-            //List<int> hoi = NAryTree.TraverseNodes();
-            List<int> hoi = NAryTree.SumToLeafs();
-            //Console.WriteLine(NAryTree.LeafCount);
-            for (int i = 0; i < hoi.Count; i++)
+            //Remove child 4
+            tree.removeNode(child4);
+
+            //tree.TraverseNodes();
+            //List<int> result = NAryTree.TraverseNodes();
+            //Console.WriteLine(tree.Count);
+            //onsole.WriteLine(tree.LeafCount);
+
+            // Show the leaf sums
+            List<int> result = tree.SumToLeafs();
+            for (int i = 0; i < result.Count; i++)
             {
-                Console.WriteLine(hoi[i]);
+                Console.WriteLine(result[i]);
             }
 
             Console.ReadLine();
